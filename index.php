@@ -1,16 +1,22 @@
 <?php
+
+session_start();
+ini_set('display_errors', 1);
+
 if (preg_match('/\.(?:png|jpg|jpeg|gif)$/', $_SERVER["REQUEST_URI"])) {
     return false;
 } else {
-    session_start();
-    ini_set('display_errors', 1);
+
+    $url = $_SERVER['REQUEST_URI'] . '/';
+    $explodeUrl = explode('/', $url);
+
+    print_r($explodeUrl);
+
     /**
      * define constants
      */
     define("DEFAULT_CONTROLLER", 'home');
     define("ROOT", dirname(__FILE__));
-
-    echo __FILE__;
 
     /**
      * load system
