@@ -6,8 +6,8 @@
     "intervention/image": "^3.8",
     "illuminate/support": "^11.25",
     "illuminate/contracts": "^11.25",
+    "propel/propel": "~2.0@beta",
     "patchwork/utf8": "^1.3",
-    "php-activerecord/php-activerecord": "^1.2",
     "twig/twig": "^3.14",
     "php": "^8.2"
   },
