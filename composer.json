@@ -1,0 +1,7 @@
+{
+  "require": {
+    "phpmailer/phpmailer": "^6.9.1",
+    "intervention/image": "^3.8",
+    "propel/propel": "~2.0@beta"
+  }
+}
