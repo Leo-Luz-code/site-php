@@ -10,7 +10,7 @@ if (preg_match('/\.(?:png|jpg|jpeg|gif)$/', $_SERVER["REQUEST_URI"])) {
     $url = $_SERVER['REQUEST_URI'] . '/';
     $explodeUrl = explode('/', $url);
 
-    print_r($explodeUrl);
+    //print_r($url);
 
     /**
      * define constants

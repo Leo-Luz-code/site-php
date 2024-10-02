@@ -6,7 +6,6 @@ use app\core\CoreController as CoreController;
 
 class BaseController extends CoreController
 {
-
     private $baseController;
     private $folders = ['admin', 'site'];
     protected $twig;

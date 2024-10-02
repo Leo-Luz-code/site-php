@@ -11,7 +11,6 @@ $url = \acme\classes\Url::getUrl();
 $template = new \acme\classes\LoadTemplate();
 $twig = $template->init();
 
-
 /**
  * call baseController to get controllers and methods
  */

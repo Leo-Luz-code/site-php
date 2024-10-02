@@ -9,5 +9,7 @@ class AddSlashUrl
         if ($_SERVER['REQUEST_URI'] != '/') {
             return $_SERVER['REQUEST_URI'] . '/';
         }
+
+        return $_SERVER['REQUEST_URI'];
     }
 }

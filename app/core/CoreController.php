@@ -20,7 +20,9 @@ class CoreController
     private function addSlashUri()
     {
         $urlSlash = new slash();
-        return $urlSlash->addSlash();
+        $urlSlash->addSlash();
+
+        return $urlSlash->addSlash();;
     }
 
     /**
