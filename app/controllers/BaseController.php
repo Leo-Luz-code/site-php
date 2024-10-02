@@ -23,9 +23,8 @@ class BaseController extends CoreController
             if (class_exists("\\app\\controllers\\" . $folder . "\\" . $this->baseController)) {
                 return "\\app\\controllers\\" . $folder . "\\" . $this->baseController;
             }
-
-            return "\\app\\controllers\\error\\NotFoundController";
         }
+        return "\\app\\controllers\\error\\NotFoundController";
     }
 
     public function getMethod($object)

@@ -2,7 +2,7 @@
 
 namespace app\controllers\error;
 
-use app\controllers\BaseController as BaseController;
+use app\controllers\BaseController;
 
 class NotFoundController extends BaseController
 {
