@@ -70,6 +70,11 @@ class __TwigTemplate_7c32e2a2f02a3fc7f5958ca9e096bed4 extends Template
         $macros = $this->macros;
         // line 6
         yield "
+    ";
+        // line 7
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getFunction('site_url')->getCallable()(), "html", null, true);
+        yield "
+
     <h2>Home</h2>
 
 ";
@@ -97,7 +102,7 @@ class __TwigTemplate_7c32e2a2f02a3fc7f5958ca9e096bed4 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  72 => 6,  65 => 5,  52 => 3,  41 => 1,);
+        return array (  75 => 7,  72 => 6,  65 => 5,  52 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -107,6 +112,8 @@ class __TwigTemplate_7c32e2a2f02a3fc7f5958ca9e096bed4 extends Template
 {% block title %} {{ title }} {% endblock %}
 
 {% block content %}
+
+    {{site_url()}}
 
     <h2>Home</h2>
 

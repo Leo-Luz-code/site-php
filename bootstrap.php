@@ -12,6 +12,12 @@ $template = new \acme\classes\LoadTemplate();
 $twig = $template->init();
 
 /**
+ * load twig functions
+ */
+$twig->addFunction($str_limit);
+$twig->addFunction($site_url);
+
+/**
  * call baseController to get controllers and methods
  */
 $baseController = new \app\controllers\BaseController();
