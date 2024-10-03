@@ -13,6 +13,9 @@
     "symfony/var-dumper": "^7.1"
   },
   "autoload": {
+    "classmap": [
+      "app/models"
+    ],
     "psr-4": {
       "acme\\classes\\": "acme/classes",
       "acme\\traits\\": "acme/traits",

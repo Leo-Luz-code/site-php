@@ -1,0 +1,4 @@
+# Sqlfile -> Database map
+default.sql=default
+afterDefault.sql=default
+
