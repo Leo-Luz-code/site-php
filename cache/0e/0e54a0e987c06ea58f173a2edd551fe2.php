@@ -52,8 +52,14 @@ class __TwigTemplate_671a2883dc9a4720ad5fdeb2a656a257 extends Template
         yield "</title>
   </head>
   <body>
+    <ul>
+      <li><a href=\"/\">Home</a></li>
+      <li><a href=\"/contact\">Contact</a></li>
+      <li><a href=\"/about\">About the enterprise</a></li>
+      <li><a href=\"/products\">Products</a></li>
+    </ul>
     <div class=\"container\">";
-        // line 9
+        // line 15
         yield from $this->unwrap()->yieldBlock('content', $context, $blocks);
         yield "</div>
   </body>
@@ -73,7 +79,7 @@ class __TwigTemplate_671a2883dc9a4720ad5fdeb2a656a257 extends Template
         yield from [];
     }
 
-    // line 9
+    // line 15
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -97,7 +103,7 @@ class __TwigTemplate_671a2883dc9a4720ad5fdeb2a656a257 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  77 => 9,  66 => 6,  57 => 9,  51 => 6,  44 => 1,);
+        return array (  83 => 15,  72 => 6,  63 => 15,  51 => 6,  44 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -110,6 +116,12 @@ class __TwigTemplate_671a2883dc9a4720ad5fdeb2a656a257 extends Template
     <title>{% block title %} {% endblock %}</title>
   </head>
   <body>
+    <ul>
+      <li><a href=\"/\">Home</a></li>
+      <li><a href=\"/contact\">Contact</a></li>
+      <li><a href=\"/about\">About the enterprise</a></li>
+      <li><a href=\"/products\">Products</a></li>
+    </ul>
     <div class=\"container\">{% block content %} {% endblock %}</div>
   </body>
 </html>

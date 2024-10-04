@@ -13,11 +13,11 @@ class HomeController extends BaseController
         /**
          * listing all news
          */
-        $news = NewsQuery::create()->findPK(1);
+        $news = NewsQuery::create()->find();
 
-        dump($news);
+        // dump($news);
 
-        $data = ['title' => 'Home'];
+        $data = ['title' => 'Home', 'news' => $news];
         $template = $this->twig->load('home.html');
         $template->display($data);
     }

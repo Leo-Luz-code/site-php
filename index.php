@@ -25,7 +25,6 @@ if (preg_match('/\.(?:png|jpg|jpeg|gif)$/', $_SERVER["REQUEST_URI"])) {
     require_once ROOT . '/generated-conf/config.php';
     require ROOT . "/app/functions/functions.php";
     require ROOT . "/app/functions/functionsTwig.php";
-    require ROOT . "/connection.php";
     require ROOT . "/bootstrap.php";
     require_once ROOT . '/generated-conf/config.php';
 

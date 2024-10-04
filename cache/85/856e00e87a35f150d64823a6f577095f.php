@@ -70,13 +70,33 @@ class __TwigTemplate_7c32e2a2f02a3fc7f5958ca9e096bed4 extends Template
         $macros = $this->macros;
         // line 6
         yield "
+    <h2>News</h2>
+
     ";
-        // line 7
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getFunction('site_url')->getCallable()(), "html", null, true);
+        // line 9
+        $context['_parent'] = $context;
+        $context['_seq'] = CoreExtension::ensureTraversable(($context["news"] ?? null));
+        foreach ($context['_seq'] as $context["_key"] => $context["newsItem"]) {
+            // line 10
+            yield "        <h3>";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["newsItem"], "getTbNewsTitle", [], "method", false, false, false, 10), "html", null, true);
+            yield "</h3>
+        <p>";
+            // line 11
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["newsItem"], "getTbNewsText", [], "method", false, false, false, 11), "html", null, true);
+            yield "</p>
+        <small>Author: ";
+            // line 12
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["newsItem"], "getTbNewsAuthor", [], "method", false, false, false, 12), "html", null, true);
+            yield "</small>
+        <hr/>
+    ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_key'], $context['newsItem'], $context['_parent']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 15
         yield "
-
-    <h2>Home</h2>
-
 ";
         yield from [];
     }
@@ -102,7 +122,7 @@ class __TwigTemplate_7c32e2a2f02a3fc7f5958ca9e096bed4 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  75 => 7,  72 => 6,  65 => 5,  52 => 3,  41 => 1,);
+        return array (  99 => 15,  90 => 12,  86 => 11,  81 => 10,  77 => 9,  72 => 6,  65 => 5,  52 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -113,9 +133,14 @@ class __TwigTemplate_7c32e2a2f02a3fc7f5958ca9e096bed4 extends Template
 
 {% block content %}
 
-    {{site_url()}}
+    <h2>News</h2>
 
-    <h2>Home</h2>
+    {% for newsItem in news %}
+        <h3>{{ newsItem.getTbNewsTitle() }}</h3>
+        <p>{{ newsItem.getTbNewsText() }}</p>
+        <small>Author: {{ newsItem.getTbNewsAuthor() }}</small>
+        <hr/>
+    {% endfor %}
 
 {% endblock %}
 ", "home.html", "C:\\wamp64\\www\\education\\app\\views\\home.html");

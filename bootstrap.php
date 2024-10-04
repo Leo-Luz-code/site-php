@@ -18,6 +18,13 @@ $twig->addFunction($str_limit);
 $twig->addFunction($site_url);
 
 /**
+ * define project timezone
+ */
+$twig->getExtension(\Twig\Extension\CoreExtension::class)->setTimezone('America/Sao_Paulo');
+$twig->getExtension(\Twig\Extension\CoreExtension::class)->setDateFormat('d/m/Y');
+
+
+/**
  * call baseController to get controllers and methods
  */
 $baseController = new \app\controllers\BaseController();

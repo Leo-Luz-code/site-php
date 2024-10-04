@@ -4,8 +4,13 @@
 
 {% block content %}
 
-    {{site_url()}}
+    <h2>News</h2>
 
-    <h2>Home</h2>
+    {% for newsItem in news %}
+        <h3>{{ newsItem.getTbNewsTitle() }}</h3>
+        <p>{{ newsItem.getTbNewsText() }}</p>
+        <small>Author: {{ newsItem.getTbNewsAuthor() }}</small>
+        <hr/>
+    {% endfor %}
 
 {% endblock %}
