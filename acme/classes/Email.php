@@ -7,7 +7,7 @@ class Email extends \PHPMailer\PHPMailer\PHPMailer
     private $email;
     private $body;
     private $sender;
-    private $to;
+    private $recipient;
     private $copy;
     private $subject;
     private $message;
@@ -28,9 +28,9 @@ class Email extends \PHPMailer\PHPMailer\PHPMailer
         $this->sender = $sender;
     }
 
-    public function setTo($to)
+    public function setRecipient($recipient)
     {
-        $this->to = $to;
+        $this->recipient = $recipient;
     }
 
     public function setCopy($copy)
@@ -59,9 +59,9 @@ class Email extends \PHPMailer\PHPMailer\PHPMailer
         $this->Username = "";
         $this->Password = "";
         $this->isHTML();
-        $this->setFrom("");
-        $this->FromName = $this->sender;
-        $this->addAddress($this->to);
+        $this->setFrom("", $this->sender);
+        //$this->FromName = $this->sender;
+        $this->addAddress($this->recipient);
         $copy = $this->copy;
 
         if (!empty(($copy))) {
@@ -69,7 +69,7 @@ class Email extends \PHPMailer\PHPMailer\PHPMailer
         }
 
         $this->Subject = $this->subject;
-        $this->AltBody = "To see this email you must use a program that accepts html";
+        $this->AltBody = "recipient see this email you must use a program that accepts html";
         $this->msgHTML($this->body);
 
         if (!$this->send()) {
