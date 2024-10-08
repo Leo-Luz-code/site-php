@@ -9,7 +9,7 @@ class ContactController extends BaseController
     public function index()
     {
         $data = ['title' => 'Contact'];
-        $template = $this->twig->load('contact.html');
+        $template = $this->twig->load('site/contact.html');
         $template->display($data);
     }
 
@@ -52,7 +52,7 @@ class ContactController extends BaseController
                 $data = ['message' => 'Invalid e-mail'];
             }
 
-            $template = $this->twig->load('contact.html');
+            $template = $this->twig->load('site/contact.html');
             $template->display($data);
         } else {
             $this->index();

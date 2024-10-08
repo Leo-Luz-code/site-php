@@ -8,7 +8,7 @@ class AboutController extends BaseController
     public function index()
     {
         $data = ['title' => 'About the enterprise'];
-        $template = $this->twig->load('about.html');
+        $template = $this->twig->load('site/about.html');
         $template->display($data);
     }
 }

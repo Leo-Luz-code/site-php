@@ -11,10 +11,10 @@ class ProductsController extends BaseController
 {
     public function index()
     {
-        Parameter::getParameter(2);
+        //Parameter::getParameter(2);
 
         $data = ['title' => 'Products page'];
-        $template = $this->twig->load('products.html');
+        $template = $this->twig->load('site/products.html');
         $template->display($data);
     }
 }
