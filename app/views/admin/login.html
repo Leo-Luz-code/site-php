@@ -7,6 +7,11 @@
   </head>
   <body>
     <div class="container">
+
+      {% if error is defined %}
+        {{ error }}
+      {% endif %}
+
       <form action="/admin/login" method="POST">
         <label for="">E-mail:</label>
         <input type="text" name="email" />

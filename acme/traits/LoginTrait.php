@@ -1,13 +1,13 @@
 <?php
 
 namespace acme\traits;
-use Redirect;
+use acme\classes\Redirect;
 
 trait LoginTrait
 {
     private $fields;
     private $field;
-    private $sqlField;
+    //private $sqlField;
 
     public function setFields($fields)
     {
@@ -20,8 +20,11 @@ trait LoginTrait
             $this->field .= $field . '=? and ';
         }
 
-        $this->sqlField = rtrim($this->field, 'and ');
-        $dataLoggedUser = parent::find('first', ['conditions' => [$this->sqlField, $email, $password]]);
+        //$this->sqlField = rtrim($this->field, 'and ');
+        $dataLoggedUser = parent::create()
+            ->filterByEmail($email)
+            ->filterByPassword($password)
+            ->findOne();
 
         return $dataLoggedUser;
     }
@@ -34,10 +37,10 @@ trait LoginTrait
         }
     }
 
-    public static function isLoggedIn($session)
+    public static function isLoggedIn($session, $redirect)
     {
         if (!isset($_SESSION[$session])) {
-            Redirect::to('admin');
+            Redirect::to($redirect);
         }
     }
 

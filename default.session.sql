@@ -1,1 +1,1 @@
-SELECT * FROM tb_news;
+SELECT * FROM tb_admin;
