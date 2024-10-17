@@ -17,35 +17,42 @@ class AdminController extends BaseController
 
     public function login()
     {
-        $admin = new AdminQuery();
-        $admin->setFields(['tb_admin_email', 'tb_admin_password']);
+        if ($_SERVER['REQUEST_METHOD'] == 'POST'):
+            $admin = new AdminQuery();
+            $admin->setFields(['tb_admin_email', 'tb_admin_password']);
 
-        /**
-         * treating input fields from form
-         */
+            /**
+             * treating input fields from form
+             */
 
-        $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-        $password = htmlspecialchars($_POST['password'], ENT_QUOTES, 'UTF-8');
+            $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+            $password = htmlspecialchars($_POST['password'], ENT_QUOTES, 'UTF-8');
 
-        $dataFromLoggedInAdmin = $admin->login($email, $password);
+            $dataFromLoggedInAdmin = $admin->login($email, $password);
 
-        if ($dataFromLoggedInAdmin !== null) {
-            session_regenerate_id();
-            $_SESSION['loggedAdmin'] = true;
-            $_SESSION['idAdmin'] = $dataFromLoggedInAdmin->getId();
-            $_SESSION['adminData'] = serialize($dataFromLoggedInAdmin);
+            if ($dataFromLoggedInAdmin !== null) {
+                session_regenerate_id();
+                $_SESSION['loggedAdmin'] = true;
+                $_SESSION['idAdmin'] = $dataFromLoggedInAdmin->getId();
+                $_SESSION['adminData'] = serialize($dataFromLoggedInAdmin);
 
-            Redirect::to('dashboard');
+                Redirect::to('dashboard');
 
-        } else {
+            } else {
 
-            $data = [
-                'title' => 'AdminLogin',
-                'error' => 'Error at login'
-            ];
+                $data = [
+                    'title' => 'AdminLogin',
+                    'error' => 'Error at login'
+                ];
 
-            $template = $this->twig->load('admin/login.html');
-            $template->display($data);
-        }
+                $template = $this->twig->load('admin/login.html');
+                $template->display($data);
+            }
+
+        else:
+
+            $this->index();
+
+        endif;
     }
 }
