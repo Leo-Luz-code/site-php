@@ -16,9 +16,9 @@ trait LoginTrait
 
     public function login($email, $password)
     {
-        foreach ($this->fields as $field) {
-            $this->field .= $field . '=? and ';
-        }
+        //foreach ($this->fields as $field) {
+        //    $this->field .= $field . '=? and ';
+        //}
 
         //$this->sqlField = rtrim($this->field, 'and ');
         $dataLoggedUser = parent::create()

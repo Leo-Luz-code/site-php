@@ -17,6 +17,8 @@ $twig = $template->init();
 $twig->addFunction($str_limit);
 $twig->addFunction($site_url);
 
+$twig->addGlobal("session", $_SESSION);
+
 /**
  * define project timezone
  */

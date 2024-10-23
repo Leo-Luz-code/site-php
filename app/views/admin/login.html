@@ -8,8 +8,8 @@
   <body>
     <div class="container">
 
-      {% if error is defined %}
-        {{ error }}
+      {% if session.error is defined %}
+        {{ session.error }}
       {% endif %}
 
       <form action="/admin/login" method="POST">
