@@ -63,7 +63,7 @@ class AdminTableMap extends TableMap
     /**
      * The total number of columns
      */
-    public const NUM_COLUMNS = 5;
+    public const NUM_COLUMNS = 4;
 
     /**
      * The number of lazy-loaded columns
@@ -73,7 +73,7 @@ class AdminTableMap extends TableMap
     /**
      * The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS)
      */
-    public const NUM_HYDRATE_COLUMNS = 5;
+    public const NUM_HYDRATE_COLUMNS = 4;
 
     /**
      * the column name for the id field
@@ -96,11 +96,6 @@ class AdminTableMap extends TableMap
     public const COL_TB_ADMIN_PASSWORD = 'tb_admin.tb_admin_password';
 
     /**
-     * the column name for the tb_admin_salt field
-     */
-    public const COL_TB_ADMIN_SALT = 'tb_admin.tb_admin_salt';
-
-    /**
      * The default string format for model objects of the related table
      */
     public const DEFAULT_STRING_FORMAT = 'YAML';
@@ -114,11 +109,11 @@ class AdminTableMap extends TableMap
      * @var array<string, mixed>
      */
     protected static $fieldNames = [
-        self::TYPE_PHPNAME       => ['Id', 'TbAdminName', 'TbAdminEmail', 'TbAdminPassword', 'TbAdminSalt', ],
-        self::TYPE_CAMELNAME     => ['id', 'tbAdminName', 'tbAdminEmail', 'tbAdminPassword', 'tbAdminSalt', ],
-        self::TYPE_COLNAME       => [AdminTableMap::COL_ID, AdminTableMap::COL_TB_ADMIN_NAME, AdminTableMap::COL_TB_ADMIN_EMAIL, AdminTableMap::COL_TB_ADMIN_PASSWORD, AdminTableMap::COL_TB_ADMIN_SALT, ],
-        self::TYPE_FIELDNAME     => ['id', 'tb_admin_name', 'tb_admin_email', 'tb_admin_password', 'tb_admin_salt', ],
-        self::TYPE_NUM           => [0, 1, 2, 3, 4, ]
+        self::TYPE_PHPNAME       => ['Id', 'TbAdminName', 'TbAdminEmail', 'TbAdminPassword', ],
+        self::TYPE_CAMELNAME     => ['id', 'tbAdminName', 'tbAdminEmail', 'tbAdminPassword', ],
+        self::TYPE_COLNAME       => [AdminTableMap::COL_ID, AdminTableMap::COL_TB_ADMIN_NAME, AdminTableMap::COL_TB_ADMIN_EMAIL, AdminTableMap::COL_TB_ADMIN_PASSWORD, ],
+        self::TYPE_FIELDNAME     => ['id', 'tb_admin_name', 'tb_admin_email', 'tb_admin_password', ],
+        self::TYPE_NUM           => [0, 1, 2, 3, ]
     ];
 
     /**
@@ -130,11 +125,11 @@ class AdminTableMap extends TableMap
      * @var array<string, mixed>
      */
     protected static $fieldKeys = [
-        self::TYPE_PHPNAME       => ['Id' => 0, 'TbAdminName' => 1, 'TbAdminEmail' => 2, 'TbAdminPassword' => 3, 'TbAdminSalt' => 4, ],
-        self::TYPE_CAMELNAME     => ['id' => 0, 'tbAdminName' => 1, 'tbAdminEmail' => 2, 'tbAdminPassword' => 3, 'tbAdminSalt' => 4, ],
-        self::TYPE_COLNAME       => [AdminTableMap::COL_ID => 0, AdminTableMap::COL_TB_ADMIN_NAME => 1, AdminTableMap::COL_TB_ADMIN_EMAIL => 2, AdminTableMap::COL_TB_ADMIN_PASSWORD => 3, AdminTableMap::COL_TB_ADMIN_SALT => 4, ],
-        self::TYPE_FIELDNAME     => ['id' => 0, 'tb_admin_name' => 1, 'tb_admin_email' => 2, 'tb_admin_password' => 3, 'tb_admin_salt' => 4, ],
-        self::TYPE_NUM           => [0, 1, 2, 3, 4, ]
+        self::TYPE_PHPNAME       => ['Id' => 0, 'TbAdminName' => 1, 'TbAdminEmail' => 2, 'TbAdminPassword' => 3, ],
+        self::TYPE_CAMELNAME     => ['id' => 0, 'tbAdminName' => 1, 'tbAdminEmail' => 2, 'tbAdminPassword' => 3, ],
+        self::TYPE_COLNAME       => [AdminTableMap::COL_ID => 0, AdminTableMap::COL_TB_ADMIN_NAME => 1, AdminTableMap::COL_TB_ADMIN_EMAIL => 2, AdminTableMap::COL_TB_ADMIN_PASSWORD => 3, ],
+        self::TYPE_FIELDNAME     => ['id' => 0, 'tb_admin_name' => 1, 'tb_admin_email' => 2, 'tb_admin_password' => 3, ],
+        self::TYPE_NUM           => [0, 1, 2, 3, ]
     ];
 
     /**
@@ -174,14 +169,6 @@ class AdminTableMap extends TableMap
         'COL_TB_ADMIN_PASSWORD' => 'TB_ADMIN_PASSWORD',
         'tb_admin_password' => 'TB_ADMIN_PASSWORD',
         'tb_admin.tb_admin_password' => 'TB_ADMIN_PASSWORD',
-        'TbAdminSalt' => 'TB_ADMIN_SALT',
-        'Admin.TbAdminSalt' => 'TB_ADMIN_SALT',
-        'tbAdminSalt' => 'TB_ADMIN_SALT',
-        'admin.tbAdminSalt' => 'TB_ADMIN_SALT',
-        'AdminTableMap::COL_TB_ADMIN_SALT' => 'TB_ADMIN_SALT',
-        'COL_TB_ADMIN_SALT' => 'TB_ADMIN_SALT',
-        'tb_admin_salt' => 'TB_ADMIN_SALT',
-        'tb_admin.tb_admin_salt' => 'TB_ADMIN_SALT',
     ];
 
     /**
@@ -205,7 +192,6 @@ class AdminTableMap extends TableMap
         $this->addColumn('tb_admin_name', 'TbAdminName', 'VARCHAR', false, 128, null);
         $this->addColumn('tb_admin_email', 'TbAdminEmail', 'VARCHAR', false, 128, null);
         $this->addColumn('tb_admin_password', 'TbAdminPassword', 'VARCHAR', false, 128, null);
-        $this->addColumn('tb_admin_salt', 'TbAdminSalt', 'VARCHAR', false, 128, null);
     }
 
     /**
@@ -363,13 +349,11 @@ class AdminTableMap extends TableMap
             $criteria->addSelectColumn(AdminTableMap::COL_TB_ADMIN_NAME);
             $criteria->addSelectColumn(AdminTableMap::COL_TB_ADMIN_EMAIL);
             $criteria->addSelectColumn(AdminTableMap::COL_TB_ADMIN_PASSWORD);
-            $criteria->addSelectColumn(AdminTableMap::COL_TB_ADMIN_SALT);
         } else {
             $criteria->addSelectColumn($alias . '.id');
             $criteria->addSelectColumn($alias . '.tb_admin_name');
             $criteria->addSelectColumn($alias . '.tb_admin_email');
             $criteria->addSelectColumn($alias . '.tb_admin_password');
-            $criteria->addSelectColumn($alias . '.tb_admin_salt');
         }
     }
 
@@ -392,13 +376,11 @@ class AdminTableMap extends TableMap
             $criteria->removeSelectColumn(AdminTableMap::COL_TB_ADMIN_NAME);
             $criteria->removeSelectColumn(AdminTableMap::COL_TB_ADMIN_EMAIL);
             $criteria->removeSelectColumn(AdminTableMap::COL_TB_ADMIN_PASSWORD);
-            $criteria->removeSelectColumn(AdminTableMap::COL_TB_ADMIN_SALT);
         } else {
             $criteria->removeSelectColumn($alias . '.id');
             $criteria->removeSelectColumn($alias . '.tb_admin_name');
             $criteria->removeSelectColumn($alias . '.tb_admin_email');
             $criteria->removeSelectColumn($alias . '.tb_admin_password');
-            $criteria->removeSelectColumn($alias . '.tb_admin_salt');
         }
     }
 

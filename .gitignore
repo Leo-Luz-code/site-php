@@ -2,3 +2,5 @@
 *.sql
 /cache/
 /vendor/
+*.yml
+/generated-*/

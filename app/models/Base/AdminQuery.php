@@ -21,13 +21,11 @@ use app\models\Map\AdminTableMap;
  * @method     ChildAdminQuery orderByTbAdminName($order = Criteria::ASC) Order by the tb_admin_name column
  * @method     ChildAdminQuery orderByTbAdminEmail($order = Criteria::ASC) Order by the tb_admin_email column
  * @method     ChildAdminQuery orderByTbAdminPassword($order = Criteria::ASC) Order by the tb_admin_password column
- * @method     ChildAdminQuery orderByTbAdminSalt($order = Criteria::ASC) Order by the tb_admin_salt column
  *
  * @method     ChildAdminQuery groupById() Group by the id column
  * @method     ChildAdminQuery groupByTbAdminName() Group by the tb_admin_name column
  * @method     ChildAdminQuery groupByTbAdminEmail() Group by the tb_admin_email column
  * @method     ChildAdminQuery groupByTbAdminPassword() Group by the tb_admin_password column
- * @method     ChildAdminQuery groupByTbAdminSalt() Group by the tb_admin_salt column
  *
  * @method     ChildAdminQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method     ChildAdminQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -44,7 +42,6 @@ use app\models\Map\AdminTableMap;
  * @method     ChildAdmin|null findOneByTbAdminName(string $tb_admin_name) Return the first ChildAdmin filtered by the tb_admin_name column
  * @method     ChildAdmin|null findOneByTbAdminEmail(string $tb_admin_email) Return the first ChildAdmin filtered by the tb_admin_email column
  * @method     ChildAdmin|null findOneByTbAdminPassword(string $tb_admin_password) Return the first ChildAdmin filtered by the tb_admin_password column
- * @method     ChildAdmin|null findOneByTbAdminSalt(string $tb_admin_salt) Return the first ChildAdmin filtered by the tb_admin_salt column
  *
  * @method     ChildAdmin requirePk($key, ?ConnectionInterface $con = null) Return the ChildAdmin by primary key and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildAdmin requireOne(?ConnectionInterface $con = null) Return the first ChildAdmin matching the query and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
@@ -53,7 +50,6 @@ use app\models\Map\AdminTableMap;
  * @method     ChildAdmin requireOneByTbAdminName(string $tb_admin_name) Return the first ChildAdmin filtered by the tb_admin_name column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildAdmin requireOneByTbAdminEmail(string $tb_admin_email) Return the first ChildAdmin filtered by the tb_admin_email column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildAdmin requireOneByTbAdminPassword(string $tb_admin_password) Return the first ChildAdmin filtered by the tb_admin_password column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
- * @method     ChildAdmin requireOneByTbAdminSalt(string $tb_admin_salt) Return the first ChildAdmin filtered by the tb_admin_salt column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
  * @method     ChildAdmin[]|Collection find(?ConnectionInterface $con = null) Return ChildAdmin objects based on current ModelCriteria
  * @psalm-method Collection&\Traversable<ChildAdmin> find(?ConnectionInterface $con = null) Return ChildAdmin objects based on current ModelCriteria
@@ -66,8 +62,6 @@ use app\models\Map\AdminTableMap;
  * @psalm-method Collection&\Traversable<ChildAdmin> findByTbAdminEmail(string|array<string> $tb_admin_email) Return ChildAdmin objects filtered by the tb_admin_email column
  * @method     ChildAdmin[]|Collection findByTbAdminPassword(string|array<string> $tb_admin_password) Return ChildAdmin objects filtered by the tb_admin_password column
  * @psalm-method Collection&\Traversable<ChildAdmin> findByTbAdminPassword(string|array<string> $tb_admin_password) Return ChildAdmin objects filtered by the tb_admin_password column
- * @method     ChildAdmin[]|Collection findByTbAdminSalt(string|array<string> $tb_admin_salt) Return ChildAdmin objects filtered by the tb_admin_salt column
- * @psalm-method Collection&\Traversable<ChildAdmin> findByTbAdminSalt(string|array<string> $tb_admin_salt) Return ChildAdmin objects filtered by the tb_admin_salt column
  *
  * @method     ChildAdmin[]|\Propel\Runtime\Util\PropelModelPager paginate($page = 1, $maxPerPage = 10, ?ConnectionInterface $con = null) Issue a SELECT query based on the current ModelCriteria and uses a page and a maximum number of results per page to compute an offset and a limit
  * @psalm-method \Propel\Runtime\Util\PropelModelPager&\Traversable<ChildAdmin> paginate($page = 1, $maxPerPage = 10, ?ConnectionInterface $con = null) Issue a SELECT query based on the current ModelCriteria and uses a page and a maximum number of results per page to compute an offset and a limit
@@ -167,7 +161,7 @@ abstract class AdminQuery extends ModelCriteria
      */
     protected function findPkSimple($key, ConnectionInterface $con)
     {
-        $sql = 'SELECT id, tb_admin_name, tb_admin_email, tb_admin_password, tb_admin_salt FROM tb_admin WHERE id = :p0';
+        $sql = 'SELECT id, tb_admin_name, tb_admin_email, tb_admin_password FROM tb_admin WHERE id = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -384,34 +378,6 @@ abstract class AdminQuery extends ModelCriteria
         }
 
         $this->addUsingAlias(AdminTableMap::COL_TB_ADMIN_PASSWORD, $tbAdminPassword, $comparison);
-
-        return $this;
-    }
-
-    /**
-     * Filter the query on the tb_admin_salt column
-     *
-     * Example usage:
-     * <code>
-     * $query->filterByTbAdminSalt('fooValue');   // WHERE tb_admin_salt = 'fooValue'
-     * $query->filterByTbAdminSalt('%fooValue%', Criteria::LIKE); // WHERE tb_admin_salt LIKE '%fooValue%'
-     * $query->filterByTbAdminSalt(['foo', 'bar']); // WHERE tb_admin_salt IN ('foo', 'bar')
-     * </code>
-     *
-     * @param string|string[] $tbAdminSalt The value to use as filter.
-     * @param string|null $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return $this The current query, for fluid interface
-     */
-    public function filterByTbAdminSalt($tbAdminSalt = null, ?string $comparison = null)
-    {
-        if (null === $comparison) {
-            if (is_array($tbAdminSalt)) {
-                $comparison = Criteria::IN;
-            }
-        }
-
-        $this->addUsingAlias(AdminTableMap::COL_TB_ADMIN_SALT, $tbAdminSalt, $comparison);
 
         return $this;
     }

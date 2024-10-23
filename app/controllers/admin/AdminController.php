@@ -8,6 +8,7 @@ use acme\classes\Redirect;
 
 class AdminController extends BaseController
 {
+
     public function index()
     {
         $data = ['title' => 'Admin Login'];

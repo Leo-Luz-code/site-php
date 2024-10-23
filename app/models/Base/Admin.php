@@ -90,13 +90,6 @@ abstract class Admin implements ActiveRecordInterface
     protected $tb_admin_password;
 
     /**
-     * The value for the tb_admin_salt field.
-     *
-     * @var        string|null
-     */
-    protected $tb_admin_salt;
-
-    /**
      * Flag to prevent endless save loop, if this object is referenced
      * by another object which falls in this transaction.
      *
@@ -371,16 +364,6 @@ abstract class Admin implements ActiveRecordInterface
     }
 
     /**
-     * Get the [tb_admin_salt] column value.
-     *
-     * @return string|null
-     */
-    public function getTbAdminSalt()
-    {
-        return $this->tb_admin_salt;
-    }
-
-    /**
      * Set the value of [id] column.
      *
      * @param int $v New value
@@ -461,26 +444,6 @@ abstract class Admin implements ActiveRecordInterface
     }
 
     /**
-     * Set the value of [tb_admin_salt] column.
-     *
-     * @param string|null $v New value
-     * @return $this The current object (for fluent API support)
-     */
-    public function setTbAdminSalt($v)
-    {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->tb_admin_salt !== $v) {
-            $this->tb_admin_salt = $v;
-            $this->modifiedColumns[AdminTableMap::COL_TB_ADMIN_SALT] = true;
-        }
-
-        return $this;
-    }
-
-    /**
      * Indicates whether the columns in this object are only set to default values.
      *
      * This method can be used in conjunction with isModified() to indicate whether an object is both
@@ -528,9 +491,6 @@ abstract class Admin implements ActiveRecordInterface
             $col = $row[TableMap::TYPE_NUM == $indexType ? 3 + $startcol : AdminTableMap::translateFieldName('TbAdminPassword', TableMap::TYPE_PHPNAME, $indexType)];
             $this->tb_admin_password = (null !== $col) ? (string) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 4 + $startcol : AdminTableMap::translateFieldName('TbAdminSalt', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->tb_admin_salt = (null !== $col) ? (string) $col : null;
-
             $this->resetModified();
             $this->setNew(false);
 
@@ -538,7 +498,7 @@ abstract class Admin implements ActiveRecordInterface
                 $this->ensureConsistency();
             }
 
-            return $startcol + 5; // 5 = AdminTableMap::NUM_HYDRATE_COLUMNS.
+            return $startcol + 4; // 4 = AdminTableMap::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException(sprintf('Error populating %s object', '\\app\\models\\Admin'), 0, $e);
@@ -752,9 +712,6 @@ abstract class Admin implements ActiveRecordInterface
         if ($this->isColumnModified(AdminTableMap::COL_TB_ADMIN_PASSWORD)) {
             $modifiedColumns[':p' . $index++]  = 'tb_admin_password';
         }
-        if ($this->isColumnModified(AdminTableMap::COL_TB_ADMIN_SALT)) {
-            $modifiedColumns[':p' . $index++]  = 'tb_admin_salt';
-        }
 
         $sql = sprintf(
             'INSERT INTO tb_admin (%s) VALUES (%s)',
@@ -780,10 +737,6 @@ abstract class Admin implements ActiveRecordInterface
                         break;
                     case 'tb_admin_password':
                         $stmt->bindValue($identifier, $this->tb_admin_password, PDO::PARAM_STR);
-
-                        break;
-                    case 'tb_admin_salt':
-                        $stmt->bindValue($identifier, $this->tb_admin_salt, PDO::PARAM_STR);
 
                         break;
                 }
@@ -860,9 +813,6 @@ abstract class Admin implements ActiveRecordInterface
             case 3:
                 return $this->getTbAdminPassword();
 
-            case 4:
-                return $this->getTbAdminSalt();
-
             default:
                 return null;
         } // switch()
@@ -894,7 +844,6 @@ abstract class Admin implements ActiveRecordInterface
             $keys[1] => $this->getTbAdminName(),
             $keys[2] => $this->getTbAdminEmail(),
             $keys[3] => $this->getTbAdminPassword(),
-            $keys[4] => $this->getTbAdminSalt(),
         ];
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -948,9 +897,6 @@ abstract class Admin implements ActiveRecordInterface
             case 3:
                 $this->setTbAdminPassword($value);
                 break;
-            case 4:
-                $this->setTbAdminSalt($value);
-                break;
         } // switch()
 
         return $this;
@@ -988,9 +934,6 @@ abstract class Admin implements ActiveRecordInterface
         }
         if (array_key_exists($keys[3], $arr)) {
             $this->setTbAdminPassword($arr[$keys[3]]);
-        }
-        if (array_key_exists($keys[4], $arr)) {
-            $this->setTbAdminSalt($arr[$keys[4]]);
         }
 
         return $this;
@@ -1046,9 +989,6 @@ abstract class Admin implements ActiveRecordInterface
         }
         if ($this->isColumnModified(AdminTableMap::COL_TB_ADMIN_PASSWORD)) {
             $criteria->add(AdminTableMap::COL_TB_ADMIN_PASSWORD, $this->tb_admin_password);
-        }
-        if ($this->isColumnModified(AdminTableMap::COL_TB_ADMIN_SALT)) {
-            $criteria->add(AdminTableMap::COL_TB_ADMIN_SALT, $this->tb_admin_salt);
         }
 
         return $criteria;
@@ -1141,7 +1081,6 @@ abstract class Admin implements ActiveRecordInterface
         $copyObj->setTbAdminName($this->getTbAdminName());
         $copyObj->setTbAdminEmail($this->getTbAdminEmail());
         $copyObj->setTbAdminPassword($this->getTbAdminPassword());
-        $copyObj->setTbAdminSalt($this->getTbAdminSalt());
         if ($makeNew) {
             $copyObj->setNew(true);
             $copyObj->setId(NULL); // this is a auto-increment column, so set to default value
@@ -1183,7 +1122,6 @@ abstract class Admin implements ActiveRecordInterface
         $this->tb_admin_name = null;
         $this->tb_admin_email = null;
         $this->tb_admin_password = null;
-        $this->tb_admin_salt = null;
         $this->alreadyInSave = false;
         $this->clearAllReferences();
         $this->resetModified();
