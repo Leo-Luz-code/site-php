@@ -37,12 +37,13 @@ class AdminController extends BaseController
                 Redirect::to("admin");
             } else {
 
-                if (password_verify($password, $dataAuth->getTbAdminPassword())) {
+                $encryptedPassword = $dataAuth->getTbAdminPassword();
 
-                    $admin = new AdminQuery();
-                    $admin->setFields(['tb_admin_email', 'tb_admin_password']);
+                if (password_verify($password, $encryptedPassword)) {
 
-                    $dataFromLoggedInAdmin = $admin->login($email, $dataAuth->getTbAdminPassword());
+                    $dataAuth->setFields(['tb_admin_email', 'tb_admin_password']);
+
+                    $dataFromLoggedInAdmin = $dataAuth->login(AdminQuery::class, $email, $encryptedPassword);
 
                     if ($dataFromLoggedInAdmin !== null) {
                         session_regenerate_id();

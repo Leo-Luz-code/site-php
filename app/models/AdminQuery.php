@@ -15,9 +15,6 @@ use app\models\Base\AdminQuery as BaseAdminQuery;
  */
 class AdminQuery extends BaseAdminQuery
 {
-    use \acme\traits\LoginTrait;
-    static $table_name = "tb_admin";
-
     public function filterByEmail($email)
     {
         return $this->filterByTbAdminEmail($email);

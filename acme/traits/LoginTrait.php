@@ -7,21 +7,20 @@ trait LoginTrait
 {
     private $fields;
     private $field;
-    //private $sqlField;
 
     public function setFields($fields)
     {
         $this->fields = $fields;
     }
 
-    public function login($email, $password)
+    public function login($queryClass, $email, $password)
     {
-        //foreach ($this->fields as $field) {
-        //    $this->field .= $field . '=? and ';
-        //}
 
-        //$this->sqlField = rtrim($this->field, 'and ');
-        $dataLoggedUser = parent::create()
+        if (!class_exists($queryClass)) {
+            throw new \Exception("Class $queryClass does not exist.");
+        }
+
+        $dataLoggedUser = $queryClass::create()
             ->filterByEmail($email)
             ->filterByPassword($password)
             ->findOne();
