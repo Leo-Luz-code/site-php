@@ -59,4 +59,8 @@ class ContactController extends BaseController
         }
     }
 
+    public function test($query)
+    {
+    }
+
 }
