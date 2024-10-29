@@ -9,7 +9,7 @@ class DashboardController extends BaseController
 
     public function index()
     {
-        $this->isLoggedIn('loggedAdmin', 'admin');
+        self::isLoggedIn('loggedAdmin', 'admin');
 
         $data = ['title' => 'Admin Dashboard'];
         $template = $this->twig->load('admin/dashboard/dashboard.html');

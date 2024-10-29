@@ -7,20 +7,26 @@ trait LoginTrait
 {
     private $fields;
     private $field;
+    private $queryClass;
+
+    public function setQueryClass($queryClass)
+    {
+        $this->queryClass = $queryClass;
+    }
 
     public function setFields($fields)
     {
         $this->fields = $fields;
     }
 
-    public function login($queryClass, $email, $password)
+    public function loginSystem($email, $password)
     {
 
-        if (!class_exists($queryClass)) {
-            throw new \Exception("Class $queryClass does not exist.");
+        if (!class_exists($this->queryClass)) {
+            throw new \Exception("Class $this->queryClass does not exist.");
         }
 
-        $dataLoggedUser = $queryClass::create()
+        $dataLoggedUser = $this->queryClass::create()
             ->filterByEmail($email)
             ->filterByPassword($password)
             ->findOne();

@@ -15,7 +15,7 @@ use app\models\Base\Admin as BaseAdmin;
  */
 class Admin extends BaseAdmin
 {
-    use \acme\traits\LoginTrait;
+    //use \acme\traits\LoginTrait;
 
     static $table_name = "tb_admin";
 

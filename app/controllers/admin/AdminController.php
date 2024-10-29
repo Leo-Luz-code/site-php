@@ -10,6 +10,8 @@ use acme\classes\Redirect;
 class AdminController extends BaseController
 {
 
+    use \acme\traits\LoginTrait;
+
     public function index()
     {
         unset($_SESSION["error"]);
@@ -41,9 +43,11 @@ class AdminController extends BaseController
 
                 if (password_verify($password, $encryptedPassword)) {
 
-                    $dataAuth->setFields(['tb_admin_email', 'tb_admin_password']);
+                    $this->setFields(['tb_admin_email', 'tb_admin_password']);
 
-                    $dataFromLoggedInAdmin = $dataAuth->login(AdminQuery::class, $email, $encryptedPassword);
+                    $this->setQueryClass(AdminQuery::class);
+
+                    $dataFromLoggedInAdmin = $this->loginSystem($email, $encryptedPassword);
 
                     if ($dataFromLoggedInAdmin !== null) {
                         session_regenerate_id();
