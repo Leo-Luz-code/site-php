@@ -15,5 +15,6 @@ use app\models\Base\Specialty as BaseSpecialty;
  */
 class Specialty extends BaseSpecialty
 {
+    static $table_name = "tb_specialty";
 
 }

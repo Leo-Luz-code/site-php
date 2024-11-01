@@ -4,6 +4,7 @@ namespace app\controllers\site;
 
 use app\controllers\BaseController;
 use app\models\NewsQuery;
+use app\models\SpecialtyQuery;
 
 class HomeController extends BaseController
 {
@@ -13,11 +14,28 @@ class HomeController extends BaseController
         /**
          * listing all news
          */
-        $news = NewsQuery::create()->find();
+        $news = NewsQuery::create()
+            ->limit(4)
+            ->find();
 
-        // dump($news);
+        /**
+         * listing all specialties
+         */
 
-        $data = ['title' => 'Home', 'news' => $news];
+        $specialties = SpecialtyQuery::create()
+            ->limit(4)
+            ->find();
+
+        // dump($specialties);
+
+        $data = [
+
+            'title' => 'OceanSoft | Home',
+            'news' => $news,
+            'specialties' => $specialties
+
+        ];
+
         $template = $this->twig->load('site/home.html');
         $template->display($data);
     }
