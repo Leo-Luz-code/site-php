@@ -36,15 +36,15 @@ block content %}
     <div class="row-fluid">
       {# here go news #} {% for news in news %}
       <div class="span3">
-        <h5 class="text-info">{{str_limit(news.tbNewsTitle, 25, "...")}}</h5>
         <img
           src="{{site_url()}}/public/images/6-md.jpg"
           class="img-polaroid"
           style="margin: 5px 0px 15px"
           alt=""
         />
+        <h5 class="text-info">{{news.tbNewsTitle}}</h5>
         <p>
-          {{str_limit(news.tbNewsText, 65, "...")}} <br />
+          {{str_limit(news.tbNewsText, 65, "...") | raw }} <br />
           <a href="/news/{{news.tbNewsSlug}}">Read more</a>
         </p>
       </div>
