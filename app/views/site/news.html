@@ -4,9 +4,12 @@
 
 {% block content %}
 
-<h2>{{news.tbNewsTitle}}</h5>
-
-{{news.tbNewsText | raw}}
-
+{% if error %}
+    <h2>News not found</h2>
+    <p>{{ error }}</p>
+{% else %}
+    <h2>{{ news.tbNewsTitle }}</h2>
+    {{ news.tbNewsText | raw }}
+{% endif %}
 
 {% endblock %}
