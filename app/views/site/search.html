@@ -1,0 +1,20 @@
+{% extends "site/layout.html" %} {% block title %} {{ title }} {% endblock %} {%
+block content %}
+
+{% if searchResult is empty %}
+    <h3>There is no search result for: "{{searchFilter}}"</h3>
+
+{% else %}
+    <h2>Search results for: "{{searchFilter}}"</h2>
+
+    {% for news in searchResult %}
+        
+        <h2>{{news.tbNewsTitle}}</h2>
+        {{str_limit(news.tbNewsText, 65, "...") | raw }} <br />
+        <a href="/news/{{news.tbNewsSlug}}">Read more...</a>
+
+    {% endfor %}
+
+{% endif %}
+
+{% endblock %}

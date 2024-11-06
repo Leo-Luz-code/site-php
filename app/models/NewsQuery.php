@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\models\Base\NewsQuery as BaseNewsQuery;
+use Propel\Runtime\ActiveQuery\Criteria;
 
 
 /**
@@ -16,5 +17,14 @@ use app\models\Base\NewsQuery as BaseNewsQuery;
  */
 class NewsQuery extends BaseNewsQuery
 {
+
+    public static function searchNews($news)
+    {
+        return NewsQuery::create()
+            ->condition('cond1', 'tb_news.tb_news_text LIKE ?', "%$news%")
+            ->condition('cond2', 'tb_news.tb_news_title LIKE ?', "%$news%")
+            ->where(['cond1', 'cond2'], Criteria::LOGICAL_OR)
+            ->find();
+    }
 
 }

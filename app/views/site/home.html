@@ -47,7 +47,7 @@ block content %}
         <h5 class="text-info">{{news.tbNewsTitle}}</h5>
         <p>
           {{str_limit(news.tbNewsText, 65, "...") | raw }} <br />
-          <a href="/news/{{news.tbNewsSlug}}">Read more</a>
+          <a href="/news/{{news.tbNewsSlug}}">Read more...</a>
         </p>
       </div>
       {% endfor %}
